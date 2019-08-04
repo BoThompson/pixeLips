@@ -1,20 +1,55 @@
--- Print contents of `tbl`, with indentation.
--- `indent` sets the initial level of indentation.
-function tprint (tbl, indent)
-  if not indent then indent = 0 end
-  for k, v in pairs(tbl) do
-    formatting = string.rep("  ", indent) .. k .. ": "
-    if type(v) == "table" then
-      print(formatting)
-      tprint(v, indent+1)
-    elseif type(v) == 'boolean' then
-      print(formatting .. tostring(v))      
-    else
-      print(formatting .. v)
-    end
-  end
-end
+--[[---------------------------------------------------------------------
 
+  PixeLips 1.0 for Aseprite (https://aseprite.org)
+  Project page: https://github.org/BoThompson/animationquantizer.git)
+   
+    by Bo Thompson ( @AimlessZealot / @Joybane )
+    Twitter: http://twitter.com/aimlesszealot
+    Dribbble: http://twitch.com/joybane
+
+  Copyright (c) 2019 Bo Thompson
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in all
+	copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+	SOFTWARE.
+
+  Purpose:
+    Generates a talking animation based upon a Papagayo lipsync script file (pgo)
+	and a correctly named folder with each mouthshape on a separate layer.
+  
+  Requirements:
+    + Aseprite 1.2.13 or newer
+	+ A Papagayo lipsync script file (pgo)
+  
+  Installation:
+    + Open Aseprite
+    + Go to `File → Scripts → Open Scripts Folder`
+    + Place downloaded LUA script into opened directory
+    + Restart Aseprite
+  
+  Usage:
+    + Go to `File → Scripts → pixeLips` to run the script
+	+ Make sure that your folder for the mouth shapes is named the same as the 
+	  actor from the Papagayo lipsync script.
+	+ Make sure that you have all of the necessary mouth shapes correctly within
+	  that folder and named properly for identication
+    + You can also setup a custom hotkey under `Edit → Keyboard Shortcuts`
+    
+-----------------------------------------------------------------------]]
 
 dlg = Dialog()
 fps = 0
@@ -22,9 +57,7 @@ wav = nil
 length = 0
 numVoices = 0
 papagayo_data = {}
-function ex()
-	app.alert("TESTING!")
-end
+
 
 function reverseArray(arr)
 	local i, j = 1, #arr
