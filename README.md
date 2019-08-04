@@ -9,6 +9,7 @@ the correct mouth shapes based upon the text and the clip. You then may need to 
 each word and mouthshape was placed in the timeline in the center. You can export this script (a pgo file) for usage
 in various animation programs that have the ability to read it! (And with this script, Aseprite has become the first
 pixel art program to do so!)
+
 [See more about the open-source code Here](https://github.com/morevnaproject/papagayo-ng)
 
 [Or Download it Here](https://my.smithmicro.com/downloads/Papagayo_Win32_2.0b1.zip)
